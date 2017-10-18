@@ -7,6 +7,6 @@ package blottn.org.replay;
 public class Example {
 
     public static void doThing() {
-        System.out.println("Hi");
+
     }
 }
