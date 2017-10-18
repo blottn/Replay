@@ -8,7 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 
 public class Spider {
 
-    public static void trace(AppCompatActivity activity){
-        activity.findViewById(android.R.id.content).setOnTouchListener(new WebListener());
+    private static Web web = new Web();
+
+//    public static void trace(AppCompatActivity activity){
+//        activity.findViewById(android.R.id.content).setOnTouchListener(new WebListener());
+//    }
+
+    public static Web getWeb() {
+        return web;
     }
+
 }

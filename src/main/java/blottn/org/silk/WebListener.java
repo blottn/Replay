@@ -1,5 +1,6 @@
 package blottn.org.silk;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -7,10 +8,13 @@ import android.view.View;
  * Created by Nick on 18/10/2017.
  */
 
-public class WebListener implements View.OnTouchListener {
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
+public class WebListener {
 
-        return true;
+    public WebListener() {
+
+    }
+
+    public void onTouch(AppCompatActivity activity, MotionEvent event) {
+
     }
 }
