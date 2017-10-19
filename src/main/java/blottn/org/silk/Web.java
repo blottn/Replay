@@ -1,6 +1,5 @@
 package blottn.org.silk;
 
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 
@@ -20,8 +19,9 @@ public class Web {
 
     private static Map<AppCompatActivity, Web> tethers = new HashMap<>();
 
-    public static void tether(ActivityCompat activityCompat, Spider spider) {
-        //used for providing non-standard spider implemetations
+    public static void tether(AppCompatActivity activity, Spider spider) {
+        Web web = new Web(spider);
+        tethers.put(activity, web);
     }
     
     public static void touch(AppCompatActivity activity, MotionEvent event) {
@@ -33,9 +33,8 @@ public class Web {
         else {
             //unseen
             //tether it, add a spider
-            Web web = new Web(new Spider());
-            tethers.put(activity, web);
-            web.snare(activity, event);
+            tether(activity, new Spider());
+            tethers.get(activity).snare(activity, event);
         }
     }
 

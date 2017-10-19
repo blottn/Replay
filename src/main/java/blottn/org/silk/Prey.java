@@ -13,6 +13,31 @@ public class Prey {
 
     private long instant;
     private MotionEvent event;
-    private AppCompatActivity clazz;
+    private AppCompatActivity activity;
 
+    public Prey(long instant, MotionEvent event, AppCompatActivity activity) {
+        this.instant = instant;
+        this.event = event;
+        this.activity = activity;
+    }
+
+    public long getInstant() {
+        return instant;
+    }
+
+    public MotionEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(MotionEvent event) {
+        this.event = event;
+    }
+
+    public AppCompatActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
+    }
 }
