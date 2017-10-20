@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
 
 /**
  * Created by Nick on 20/10/2017.
+ * Class for storing data captured by the web
  */
 
 public class Nest extends SQLiteOpenHelper {
