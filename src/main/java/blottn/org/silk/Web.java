@@ -53,20 +53,19 @@ public class Web {
     }
 
     public void snare(AppCompatActivity activity, MotionEvent event) {
-        //handle data
-        System.out.println("Motion Detected!");
-        // check views involved
         List<Field> fields = findAllWebbedViews(activity);
         if (fields == null) {
 //            fields = findAllViews();
         }
+        System.out.println("found this many views to be checked: " + fields.size());
+
         Prey prey = new Prey(new Date().getTime(),event,activity, null);    //TODO find the views involved
         for (Spider spider : spiders) {
             spider.feed(prey);
         }
     }
 
-    private List<Field> findAllWebbedViews(AppCompatActivity activity) {
+    private List<Field> findAllWebbedViews(AppCompatActivity activity) {    //TODO add functionality for when whole class is @Webbed or nothing is @Webbed
         List<Field> found = new ArrayList<>();
         for (Field field : activity.getClass().getDeclaredFields()) {
             boolean wasAccessible = field.isAccessible();

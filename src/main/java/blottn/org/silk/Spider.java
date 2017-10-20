@@ -15,7 +15,8 @@ public class Spider {
     }
 
     public void feed(Prey prey) {
-        System.out.println(prey.toString());
+//        System.out.println(prey.toString());
+        prey.getActivity().getClass().getDeclaredFields()
     }
 }
 
