@@ -9,14 +9,12 @@ package blottn.org.silk;
 
 public class Spider {
 
-    //keep track of current number of fingers on the screen
     public Spider() {
 
     }
 
     public void feed(Prey prey) {
-//        System.out.println(prey.toString());
-        prey.getActivity().getClass().getDeclaredFields()
+        prey.getActivity().getClass().getDeclaredFields();
     }
 }
 
