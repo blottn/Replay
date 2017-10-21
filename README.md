@@ -2,12 +2,12 @@
 
 ## Features:
 
-## Implemented
+### Implemented
 - UI interaction capturing in a meaningful format
 - Easy to use
 - Straightforward
 
-## Coming soon
+### Coming soon
 - Actual data collection lol...
 - Lightweight
 - Data visualisation
