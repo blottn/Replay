@@ -12,4 +12,9 @@ public class Spider {
     public Spider() {
 
     }
+
+    public void feed(Prey prey) {
+        prey.getActivity().getClass().getDeclaredFields();
+    }
 }
+

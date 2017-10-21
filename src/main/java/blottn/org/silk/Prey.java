@@ -2,6 +2,10 @@ package blottn.org.silk;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nick on 19/10/2017.
@@ -14,11 +18,17 @@ public class Prey {
     private long instant;
     private MotionEvent event;
     private AppCompatActivity activity;
+    private List<View> involvedViews = new ArrayList<>();
 
-    public Prey(long instant, MotionEvent event, AppCompatActivity activity) {
+    public Prey(long instant, MotionEvent event, AppCompatActivity activity, View... views) {
         this.instant = instant;
         this.event = event;
         this.activity = activity;
+        if (views != null) {
+            for (View view : views) {
+                involvedViews.add(view);
+            }
+        }
     }
 
     public long getInstant() {
@@ -39,5 +49,10 @@ public class Prey {
 
     public void setActivity(AppCompatActivity activity) {
         this.activity = activity;
+    }
+
+    @Override
+    public String toString() {
+        return instant + " " + event.toString() + " "  +activity.getClass();
     }
 }
