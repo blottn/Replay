@@ -14,7 +14,7 @@ import android.provider.BaseColumns;
 
 public class Nest extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "WebDatabase.db";
 
 
@@ -45,12 +45,12 @@ public class Nest extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
-        onCreate(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade(db, oldVersion, newVersion);
+        db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
     }
 
     public void insert(Prey prey) {
@@ -64,7 +64,7 @@ public class Nest extends SQLiteOpenHelper {
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(WebDatabaseEntry.TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
 
     public Cursor query(long time, String type) {
