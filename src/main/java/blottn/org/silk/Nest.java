@@ -5,14 +5,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.media.midi.MidiOutputPort;
 import android.provider.BaseColumns;
+import android.view.MotionEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Nick on 20/10/2017.
  * Class for storing data captured by the web
  */
 
-public class Nest extends SQLiteOpenHelper {
+public final class Nest extends SQLiteOpenHelper {
+
+    final Map<Integer, String> ACTION_MAPPER;
+
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "WebDatabase.db";
@@ -40,6 +48,25 @@ public class Nest extends SQLiteOpenHelper {
 
     public Nest(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        ACTION_MAPPER = new HashMap<Integer, String>();
+        initMapper();
+    }
+
+    private void initMapper() {
+
+        //By doing it like this I don't have to rewrite the code each time google updates the api...
+        ACTION_MAPPER.put(MotionEvent.ACTION_BUTTON_PRESS, "ACTION_BUTTON_PRESS");
+        ACTION_MAPPER.put(MotionEvent.ACTION_BUTTON_RELEASE, "ACTION_BUTTON_RELEASE");
+        ACTION_MAPPER.put(MotionEvent.ACTION_CANCEL,"ACTION_CANCEL");
+        ACTION_MAPPER.put(MotionEvent.ACTION_DOWN,"ACTION_DOWN");
+        ACTION_MAPPER.put(MotionEvent.ACTION_HOVER_ENTER,"ACTION_HOVER_ENTER");
+        ACTION_MAPPER.put(MotionEvent.ACTION_HOVER_EXIT,"ACTION_HOVER_EXIT");
+        ACTION_MAPPER.put(MotionEvent.ACTION_HOVER_MOVE,"ACTION_HOVER_MOVE");
+        ACTION_MAPPER.put(MotionEvent.ACTION_MOVE,"ACTION_MOVE");
+        ACTION_MAPPER.put(MotionEvent.ACTION_OUTSIDE,"ACTION_OUTSIDE");
+        ACTION_MAPPER.put(MotionEvent.ACTION_POINTER_DOWN,"ACTION_POINTER_DOWN");
+        ACTION_MAPPER.put(MotionEvent.ACTION_POINTER_UP,"ACTION_POINTER_UP");
+
     }
 
     @Override
