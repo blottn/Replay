@@ -59,6 +59,7 @@ public final class Nest extends SQLiteOpenHelper {
         ACTION_MAPPER.put(MotionEvent.ACTION_BUTTON_RELEASE, "ACTION_BUTTON_RELEASE");
         ACTION_MAPPER.put(MotionEvent.ACTION_CANCEL,"ACTION_CANCEL");
         ACTION_MAPPER.put(MotionEvent.ACTION_DOWN,"ACTION_DOWN");
+        ACTION_MAPPER.put(MotionEvent.ACTION_UP,"ACTION_UP");
         ACTION_MAPPER.put(MotionEvent.ACTION_HOVER_ENTER,"ACTION_HOVER_ENTER");
         ACTION_MAPPER.put(MotionEvent.ACTION_HOVER_EXIT,"ACTION_HOVER_EXIT");
         ACTION_MAPPER.put(MotionEvent.ACTION_HOVER_MOVE,"ACTION_HOVER_MOVE");
@@ -86,15 +87,13 @@ public final class Nest extends SQLiteOpenHelper {
     }
 
     public void insert(Prey prey) {
-        System.out.println("DB: inserted an item");
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(WebDatabaseEntry.COLUMN_NAME_INSTANT,prey.getInstant());
-        values.put(WebDatabaseEntry.COLUMN_NAME_TYPE,"wowow");
-
+        values.put(WebDatabaseEntry.COLUMN_NAME_TYPE,ACTION_MAPPER.get(prey.getEvent().getAction()));
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(WebDatabaseEntry.TABLE_NAME, null, values);
     }
@@ -128,4 +127,8 @@ public final class Nest extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("select * from " + WebDatabaseEntry.TABLE_NAME,null);
+    }
 }
