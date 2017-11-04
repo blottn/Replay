@@ -53,11 +53,19 @@ public class Web {
     }
 
     public void snare(AppCompatActivity activity, MotionEvent event) {
-        List<Field> fields = findAllWebbedViews(activity);
-        if (fields == null) {
+        List<View> views = findAllWebbedViews(activity);
+        if (views == null) {
 //            fields = findAllViews();
         }
-        System.out.println("found this many views to be checked: " + fields.size());
+
+
+
+        //get the view's "view-tree path"
+//        for (Field field : fields) {
+//            field.get(activity)
+//        }
+
+        System.out.println("found this many views to be checked: " + views.size());
 
         Prey prey = new Prey(new Date().getTime(),event,activity, null);    //TODO find the views involved
         for (Spider spider : spiders) {
@@ -65,14 +73,14 @@ public class Web {
         }
     }
 
-    private List<Field> findAllWebbedViews(AppCompatActivity activity) {    //TODO add functionality for when whole class is @Webbed or nothing is @Webbed
-        List<Field> found = new ArrayList<>();
+    private List<View> findAllWebbedViews(AppCompatActivity activity) {    //TODO add functionality for when whole class is @Webbed or nothing is @Webbed
+        List<View> found = new ArrayList<>();
         for (Field field : activity.getClass().getDeclaredFields()) {
             boolean wasAccessible = field.isAccessible();
             field.setAccessible(true);
             try {
                 if (isWebbedView(field) && field.get(activity) != null) {
-                    found.add(field);
+                    found.add((View) field.get(activity));
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();    //This shouldn't happen anyways as we have set the field as accessible
