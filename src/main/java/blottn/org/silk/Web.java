@@ -1,16 +1,19 @@
 package blottn.org.silk;
 
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ContentFrameLayout;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * Created by Nick on 18/10/2017.
@@ -54,18 +57,32 @@ public class Web {
 
     public void snare(AppCompatActivity activity, MotionEvent event) {
         List<View> views = findAllWebbedViews(activity);
-        if (views == null) {
-//            fields = findAllViews();
-        }
-
-
+        views.stream().filter((Predicate<View>) view -> {
+            int[] location = new int[2];
+            view.getLocationOnScreen(location);
+            Rect bounds = new Rect(location[0],location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
+            return bounds.contains((int) event.getX(), (int) event.getY());
+        });
 
         //get the view's "view-tree path"
-//        for (Field field : fields) {
-//            field.get(activity)
-//        }
+        List<String> viewPaths = new ArrayList<>();
+        for (View view : views) {
+            String viewPath = view.getClass().getName();
+            View prev = view;
+            ViewGroup current = (ViewGroup) prev.getParent();
+            while (!current.getClass().equals(ContentFrameLayout.class) && !prev.getClass().equals(ContentFrameLayout.class)) {
+                viewPath = current.getClass().getName() + "/" + current.indexOfChild(prev) + "/" + viewPath;
+                current = (ViewGroup) current.getParent();
+            }
+            ContentFrameLayout root = (ContentFrameLayout) activity.findViewById(android.R.id.content);
+            viewPath = activity.getClass().getName() + "/" + viewPath;
+            viewPaths.add(viewPath);
+        }
 
-        System.out.println("found this many views to be checked: " + views.size());
+        System.out.println("paths: ");
+        for (String s : viewPaths) {
+            System.out.println(s);
+        }
 
         Prey prey = new Prey(new Date().getTime(),event,activity, null);    //TODO find the views involved
         for (Spider spider : spiders) {
