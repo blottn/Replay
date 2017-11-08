@@ -1,4 +1,4 @@
-package blottn.org.silk.core;
+package org.blottn.silk.core;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;

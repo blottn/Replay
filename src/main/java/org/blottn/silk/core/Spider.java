@@ -1,4 +1,4 @@
-package blottn.org.silk.core;
+package org.blottn.silk.core;
 
 /**
  * Created by Nick on 18/10/2017.

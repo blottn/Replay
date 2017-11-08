@@ -1,4 +1,4 @@
-package blottn.org.silk.core;
+package org.blottn.silk.core;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

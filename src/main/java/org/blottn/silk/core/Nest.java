@@ -1,4 +1,4 @@
-package blottn.org.silk.core;
+package org.blottn.silk.core;
 
 import android.content.ContentValues;
 import android.content.Context;

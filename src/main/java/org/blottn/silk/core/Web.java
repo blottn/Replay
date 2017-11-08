@@ -1,4 +1,4 @@
-package blottn.org.silk.core;
+package org.blottn.silk.core;
 
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
