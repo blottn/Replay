@@ -20,15 +20,11 @@ public class Prey {
     private AppCompatActivity activity;
     private List<View> involvedViews = new ArrayList<>();
 
-    public Prey(long instant, MotionEvent event, AppCompatActivity activity, View... views) {
+    public Prey(long instant, MotionEvent event, AppCompatActivity activity, List<View> views) {
         this.instant = instant;
         this.event = event;
         this.activity = activity;
-        if (views != null) {
-            for (View view : views) {
-                involvedViews.add(view);
-            }
-        }
+        this.involvedViews = views;
     }
 
     public long getInstant() {

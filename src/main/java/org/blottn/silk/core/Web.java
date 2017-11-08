@@ -7,6 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.blottn.silk.api.Webbed;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,12 +59,12 @@ public class Web {
 
     public void snare(AppCompatActivity activity, MotionEvent event) {
         List<View> views = findAllWebbedViews(activity);
-        views.stream().filter((Predicate<View>) view -> {
-            int[] location = new int[2];
-            view.getLocationOnScreen(location);
-            Rect bounds = new Rect(location[0],location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
-            return bounds.contains((int) event.getX(), (int) event.getY());
-        });
+//        views.stream().filter((Predicate<View>) view -> {
+//            int[] location = new int[2];
+//            view.getLocationOnScreen(location);
+//            Rect bounds = new Rect(location[0],location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
+//            return bounds.contains((int) event.getX(), (int) event.getY());
+//        });
 
         //get the view's "view-tree path"
         List<String> viewPaths = new ArrayList<>();
@@ -84,7 +86,7 @@ public class Web {
             System.out.println(s);
         }
 
-        Prey prey = new Prey(new Date().getTime(),event,activity, null);    //TODO find the views involved
+        Prey prey = new Prey(new Date().getTime(),event,activity, views);    //TODO find the views involved
         for (Spider spider : spiders) {
             spider.feed(prey);
         }
