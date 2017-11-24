@@ -18,13 +18,13 @@ public class Prey {
     private long instant;
     private MotionEvent event;
     private AppCompatActivity activity;
-    private List<View> involvedViews = new ArrayList<>();
+    private List<String> viewPaths;
 
-    public Prey(long instant, MotionEvent event, AppCompatActivity activity, List<View> views) {
+    public Prey(long instant, MotionEvent event, AppCompatActivity activity, List<String> views) {
         this.instant = instant;
         this.event = event;
         this.activity = activity;
-        this.involvedViews = views;
+        this.viewPaths = views;
     }
 
     public long getInstant() {
@@ -35,18 +35,18 @@ public class Prey {
         return event;
     }
 
-    public void setEvent(MotionEvent event) {
-        this.event = event;
-    }
-
     public AppCompatActivity getActivity() {
         return activity;
     }
 
-    public void setActivity(AppCompatActivity activity) {
-        this.activity = activity;
+    public List<String> getViewpaths() { return viewPaths; }
+    public String getViewpathsString() {
+        String paths = "";
+        for (String path : getViewpaths()) {
+            paths += path + " ";
+        }
+        return paths;
     }
-
     @Override
     public String toString() {
         return instant + " " + event.toString() + " "  +activity.getClass();

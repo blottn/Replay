@@ -86,7 +86,8 @@ public class Web {
             System.out.println(s);
         }
 
-        Prey prey = new Prey(new Date().getTime(),event,activity, views);    //TODO find the views involved
+        Prey prey = new Prey(new Date().getTime(),event,activity, viewPaths);
+
         for (Spider spider : spiders) {
             spider.feed(prey);
         }

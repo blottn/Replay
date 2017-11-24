@@ -30,6 +30,7 @@ public final class Nest extends SQLiteOpenHelper {
 
         public static final String COLUMN_NAME_INSTANT = "instant";     //placeholder basic information
         public static final String COLUMN_NAME_TYPE = "type";
+        public static final String COLUMN_NAME_VIEWS = "views";
     }
 
     // SQL command to create the table
@@ -37,6 +38,7 @@ public final class Nest extends SQLiteOpenHelper {
             "CREATE TABLE " + WebDatabaseEntry.TABLE_NAME + " (" +
                     WebDatabaseEntry._ID + " INTEGER PRIMARY KEY," +
                     WebDatabaseEntry.COLUMN_NAME_INSTANT + " BIGINT," +
+                    WebDatabaseEntry.COLUMN_NAME_VIEWS + " TEXT," +
                     WebDatabaseEntry.COLUMN_NAME_TYPE + " TEXT)";
 
     // SQL command to delete the table
@@ -93,6 +95,7 @@ public final class Nest extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(WebDatabaseEntry.COLUMN_NAME_INSTANT,prey.getInstant());
         values.put(WebDatabaseEntry.COLUMN_NAME_TYPE,ACTION_MAPPER.get(prey.getEvent().getAction()));
+        values.put(WebDatabaseEntry.COLUMN_NAME_VIEWS,prey.getViewpathsString());
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(WebDatabaseEntry.TABLE_NAME, null, values);
     }
