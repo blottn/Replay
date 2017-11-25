@@ -2,9 +2,7 @@ package org.blottn.silk.core;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
-import android.view.View;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

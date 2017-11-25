@@ -1,6 +1,5 @@
 package org.blottn.silk.core;
 
-import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
 import android.view.MotionEvent;
@@ -15,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
 /**
  * Created by Nick on 18/10/2017.
